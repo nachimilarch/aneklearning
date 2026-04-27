@@ -1,0 +1,12 @@
+{
+  "name": "aneklearning",
+  "version": "1.0.0",
+  "description": "Career Transformation Coach & Communication Expert Website",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js"
+  },
+  "dependencies": {
+    "express": "^4.18.2"
+  }
+}
