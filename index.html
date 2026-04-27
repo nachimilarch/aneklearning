@@ -1,0 +1,804 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Anek Learning Solutions | Vidya Malve</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Playfair+Display:wght@600;700&display=swap" rel="stylesheet"/>
+  <style>
+    :root {
+      --primary: #1a4a8a;
+      --primary-light: #2563eb;
+      --primary-dark: #0f2d5e;
+      --gold: #c9a84c;
+      --gold-light: #f0d080;
+      --white: #ffffff;
+      --off-white: #f8faff;
+      --text-dark: #1a1a2e;
+      --text-mid: #4a5568;
+      --text-light: #718096;
+      --border: #e2e8f0;
+      --shadow: 0 4px 24px rgba(26,74,138,0.10);
+      --shadow-lg: 0 8px 40px rgba(26,74,138,0.16);
+    }
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body { font-family: 'Inter', sans-serif; color: var(--text-dark); background: var(--white); }
+
+    /* NAV */
+    nav {
+      position: fixed; top: 0; width: 100%; z-index: 100;
+      background: rgba(255,255,255,0.97);
+      box-shadow: 0 2px 16px rgba(26,74,138,0.08);
+      padding: 0 5%;
+      display: flex; align-items: center; justify-content: space-between;
+      height: 68px;
+    }
+    .nav-logo { display: flex; align-items: center; gap: 10px; }
+    .nav-logo-icon {
+      width: 40px; height: 40px; background: linear-gradient(135deg, var(--primary), var(--primary-light));
+      border-radius: 10px; display: flex; align-items: center; justify-content: center;
+      font-size: 20px; color: white;
+    }
+    .nav-logo-text { font-weight: 800; font-size: 1.1rem; color: var(--primary-dark); }
+    .nav-logo-text span { color: var(--gold); }
+    .nav-links { display: flex; gap: 28px; list-style: none; }
+    .nav-links a { text-decoration: none; color: var(--text-mid); font-size: 0.9rem; font-weight: 500; transition: color 0.2s; }
+    .nav-links a:hover { color: var(--primary); }
+    .nav-cta {
+      background: linear-gradient(135deg, #25d366, #128c7e);
+      color: white; border: none; padding: 10px 22px;
+      border-radius: 50px; font-size: 0.88rem; font-weight: 600;
+      cursor: pointer; text-decoration: none; display: flex; align-items: center; gap: 7px;
+      transition: transform 0.2s, box-shadow 0.2s;
+    }
+    .nav-cta:hover { transform: translateY(-1px); box-shadow: 0 4px 16px rgba(37,211,102,0.35); }
+
+    /* HERO */
+    .hero {
+      min-height: 100vh;
+      background: linear-gradient(135deg, #0f2d5e 0%, #1a4a8a 45%, #1e3a5f 100%);
+      display: flex; align-items: center;
+      padding: 100px 5% 60px;
+      position: relative; overflow: hidden;
+    }
+    .hero::before {
+      content: '';
+      position: absolute; top: -100px; right: -100px;
+      width: 600px; height: 600px;
+      background: radial-gradient(circle, rgba(201,168,76,0.12) 0%, transparent 70%);
+      border-radius: 50%;
+    }
+    .hero::after {
+      content: '';
+      position: absolute; bottom: -150px; left: -80px;
+      width: 500px; height: 500px;
+      background: radial-gradient(circle, rgba(37,99,235,0.15) 0%, transparent 70%);
+      border-radius: 50%;
+    }
+    .hero-content { max-width: 640px; z-index: 2; }
+    .hero-badge {
+      display: inline-flex; align-items: center; gap: 8px;
+      background: rgba(201,168,76,0.15);
+      border: 1px solid rgba(201,168,76,0.4);
+      color: var(--gold-light);
+      padding: 6px 16px; border-radius: 50px;
+      font-size: 0.82rem; font-weight: 600; letter-spacing: 0.5px;
+      margin-bottom: 24px;
+    }
+    .hero h1 {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(2.2rem, 4.5vw, 3.2rem);
+      font-weight: 700; color: var(--white);
+      line-height: 1.2; margin-bottom: 20px;
+    }
+    .hero h1 span { color: var(--gold-light); }
+    .hero-sub {
+      font-size: 1.1rem; color: rgba(255,255,255,0.8);
+      line-height: 1.7; margin-bottom: 36px; font-weight: 400;
+    }
+    .hero-ctas { display: flex; gap: 14px; flex-wrap: wrap; }
+    .btn-primary {
+      background: linear-gradient(135deg, var(--gold), #a87c28);
+      color: white; padding: 14px 30px;
+      border-radius: 50px; font-weight: 700; font-size: 0.95rem;
+      text-decoration: none; border: none; cursor: pointer;
+      display: inline-flex; align-items: center; gap: 8px;
+      transition: transform 0.2s, box-shadow 0.2s;
+      box-shadow: 0 4px 20px rgba(201,168,76,0.4);
+    }
+    .btn-primary:hover { transform: translateY(-2px); box-shadow: 0 8px 28px rgba(201,168,76,0.5); }
+    .btn-whatsapp {
+      background: linear-gradient(135deg, #25d366, #128c7e);
+      color: white; padding: 14px 30px;
+      border-radius: 50px; font-weight: 700; font-size: 0.95rem;
+      text-decoration: none; border: none; cursor: pointer;
+      display: inline-flex; align-items: center; gap: 8px;
+      transition: transform 0.2s, box-shadow 0.2s;
+      box-shadow: 0 4px 20px rgba(37,211,102,0.3);
+    }
+    .btn-whatsapp:hover { transform: translateY(-2px); box-shadow: 0 8px 28px rgba(37,211,102,0.4); }
+    .hero-stats {
+      display: flex; gap: 36px; margin-top: 48px;
+      flex-wrap: wrap;
+    }
+    .stat { }
+    .stat-num { font-size: 1.8rem; font-weight: 800; color: var(--gold-light); }
+    .stat-label { font-size: 0.82rem; color: rgba(255,255,255,0.65); font-weight: 500; margin-top: 2px; }
+
+    /* CREDENTIALS BAR */
+    .credentials-bar {
+      background: var(--off-white);
+      padding: 20px 5%;
+      border-bottom: 1px solid var(--border);
+    }
+    .credentials-inner {
+      display: flex; flex-wrap: wrap; gap: 16px;
+      align-items: center; justify-content: center;
+    }
+    .cred-badge {
+      display: flex; align-items: center; gap: 8px;
+      background: white; border: 1px solid var(--border);
+      padding: 8px 16px; border-radius: 50px;
+      font-size: 0.83rem; font-weight: 600; color: var(--primary-dark);
+      box-shadow: 0 2px 8px rgba(26,74,138,0.06);
+    }
+    .cred-badge .dot { width: 8px; height: 8px; border-radius: 50%; background: var(--gold); }
+
+    /* SECTIONS COMMON */
+    section { padding: 80px 5%; }
+    .section-label {
+      font-size: 0.8rem; font-weight: 700; letter-spacing: 2px;
+      color: var(--gold); text-transform: uppercase; margin-bottom: 10px;
+    }
+    .section-title {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(1.8rem, 3.5vw, 2.4rem);
+      font-weight: 700; color: var(--text-dark);
+      line-height: 1.25; margin-bottom: 16px;
+    }
+    .section-subtitle { font-size: 1rem; color: var(--text-mid); line-height: 1.7; max-width: 560px; }
+
+    /* ABOUT */
+    .about { background: white; }
+    .about-grid {
+      display: grid; grid-template-columns: 1fr 1fr;
+      gap: 60px; align-items: center; margin-top: 50px;
+    }
+    .about-card {
+      background: linear-gradient(135deg, var(--primary-dark), var(--primary));
+      border-radius: 24px; padding: 48px 40px;
+      color: white; position: relative; overflow: hidden;
+    }
+    .about-card::before {
+      content: ''; position: absolute; top: -40px; right: -40px;
+      width: 200px; height: 200px;
+      background: radial-gradient(circle, rgba(201,168,76,0.2) 0%, transparent 70%);
+      border-radius: 50%;
+    }
+    .about-card-name {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.7rem; font-weight: 700; color: white; margin-bottom: 6px;
+    }
+    .about-card-title { font-size: 0.9rem; color: var(--gold-light); font-weight: 500; margin-bottom: 24px; }
+    .about-card-tags { display: flex; flex-wrap: wrap; gap: 8px; }
+    .about-tag {
+      background: rgba(255,255,255,0.12);
+      border: 1px solid rgba(255,255,255,0.2);
+      color: white; padding: 5px 13px;
+      border-radius: 50px; font-size: 0.78rem; font-weight: 500;
+    }
+    .about-text p { color: var(--text-mid); line-height: 1.8; margin-bottom: 18px; font-size: 0.98rem; }
+    .about-pillars { display: flex; flex-direction: column; gap: 14px; margin-top: 24px; }
+    .pillar {
+      display: flex; align-items: flex-start; gap: 14px;
+      background: var(--off-white); border-radius: 14px; padding: 16px 18px;
+      border-left: 4px solid var(--gold);
+    }
+    .pillar-icon { font-size: 1.4rem; }
+    .pillar-title { font-weight: 700; font-size: 0.9rem; color: var(--primary-dark); margin-bottom: 2px; }
+    .pillar-desc { font-size: 0.82rem; color: var(--text-light); }
+
+    /* SERVICES */
+    .services { background: var(--off-white); }
+    .services-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; margin-top: 50px; }
+    .service-group {
+      background: white; border-radius: 20px; padding: 32px 28px;
+      box-shadow: var(--shadow); border-top: 4px solid transparent;
+      transition: transform 0.25s, box-shadow 0.25s;
+    }
+    .service-group:nth-child(1) { border-top-color: var(--primary-light); }
+    .service-group:nth-child(2) { border-top-color: var(--gold); }
+    .service-group:nth-child(3) { border-top-color: #6c63ff; }
+    .service-group:hover { transform: translateY(-4px); box-shadow: var(--shadow-lg); }
+    .sg-icon { font-size: 2rem; margin-bottom: 14px; }
+    .sg-title { font-size: 1rem; font-weight: 800; color: var(--primary-dark); margin-bottom: 16px; }
+    .sg-items { list-style: none; display: flex; flex-direction: column; gap: 10px; }
+    .sg-items li {
+      display: flex; align-items: center; gap: 10px;
+      font-size: 0.88rem; color: var(--text-mid); font-weight: 500;
+    }
+    .sg-items li::before {
+      content: ''; width: 6px; height: 6px; border-radius: 50%;
+      background: var(--gold); flex-shrink: 0;
+    }
+
+    /* WHY CHOOSE */
+    .why { background: white; }
+    .why-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; margin-top: 50px; }
+    .why-card {
+      border: 1px solid var(--border); border-radius: 20px;
+      padding: 32px 26px; text-align: center;
+      transition: border-color 0.25s, box-shadow 0.25s, transform 0.25s;
+    }
+    .why-card:hover {
+      border-color: var(--primary-light);
+      box-shadow: 0 8px 32px rgba(26,74,138,0.12);
+      transform: translateY(-3px);
+    }
+    .why-icon { font-size: 2.2rem; margin-bottom: 14px; }
+    .why-title { font-size: 1rem; font-weight: 700; color: var(--primary-dark); margin-bottom: 10px; }
+    .why-desc { font-size: 0.87rem; color: var(--text-mid); line-height: 1.65; }
+
+    /* CONTENT HUB */
+    .content-hub { background: var(--off-white); }
+    .tips-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 22px; margin-top: 50px; }
+    .tip-card {
+      background: white; border-radius: 18px; padding: 28px 24px;
+      box-shadow: var(--shadow); cursor: pointer;
+      transition: transform 0.2s, box-shadow 0.2s;
+      border-bottom: 3px solid var(--primary-light);
+    }
+    .tip-card:hover { transform: translateY(-3px); box-shadow: var(--shadow-lg); }
+    .tip-tag {
+      display: inline-block; font-size: 0.72rem; font-weight: 700;
+      letter-spacing: 1px; text-transform: uppercase;
+      color: var(--primary-light); margin-bottom: 10px;
+    }
+    .tip-title { font-size: 0.95rem; font-weight: 700; color: var(--text-dark); margin-bottom: 8px; line-height: 1.4; }
+    .tip-preview { font-size: 0.83rem; color: var(--text-light); line-height: 1.6; }
+    .tip-cta {
+      display: inline-flex; align-items: center; gap: 5px;
+      font-size: 0.8rem; font-weight: 600; color: var(--primary-light);
+      margin-top: 14px; text-decoration: none;
+    }
+
+    /* TESTIMONIALS */
+    .testimonials { background: white; }
+    .testimonials-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 22px; margin-top: 50px; }
+    .testimonial-card {
+      background: var(--off-white); border-radius: 20px; padding: 28px 24px;
+      border: 1px solid var(--border); position: relative;
+    }
+    .quote-mark {
+      font-size: 3rem; line-height: 1; color: var(--gold);
+      font-family: Georgia, serif; position: absolute; top: 16px; left: 22px; opacity: 0.4;
+    }
+    .testimonial-text { font-size: 0.9rem; color: var(--text-mid); line-height: 1.7; padding-top: 24px; margin-bottom: 20px; font-style: italic; }
+    .testimonial-author { display: flex; align-items: center; gap: 12px; }
+    .author-avatar {
+      width: 44px; height: 44px; border-radius: 50%;
+      background: linear-gradient(135deg, var(--primary), var(--primary-light));
+      display: flex; align-items: center; justify-content: center;
+      font-size: 1.1rem; color: white; font-weight: 700;
+    }
+    .author-name { font-size: 0.88rem; font-weight: 700; color: var(--text-dark); }
+    .author-role { font-size: 0.78rem; color: var(--text-light); }
+    .stars { color: #f59e0b; font-size: 0.85rem; margin-bottom: 4px; }
+
+    /* LEAD CAPTURE CTA */
+    .cta-strip {
+      background: linear-gradient(135deg, var(--primary-dark) 0%, var(--primary) 60%, #1e3a5f 100%);
+      padding: 70px 5%; text-align: center; position: relative; overflow: hidden;
+    }
+    .cta-strip::before {
+      content: ''; position: absolute; top: -80px; right: 10%;
+      width: 300px; height: 300px;
+      background: radial-gradient(circle, rgba(201,168,76,0.15) 0%, transparent 70%);
+      border-radius: 50%;
+    }
+    .cta-strip h2 {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(1.7rem, 3vw, 2.3rem);
+      color: white; margin-bottom: 14px;
+    }
+    .cta-strip p { font-size: 1rem; color: rgba(255,255,255,0.75); margin-bottom: 34px; max-width: 500px; margin-left: auto; margin-right: auto; }
+    .cta-buttons { display: flex; gap: 14px; justify-content: center; flex-wrap: wrap; }
+
+    /* LEAD FORM */
+    .lead-section { background: var(--off-white); padding: 80px 5%; }
+    .lead-inner {
+      max-width: 900px; margin: 0 auto;
+      display: grid; grid-template-columns: 1fr 1fr; gap: 60px; align-items: center;
+    }
+    .lead-form-box { background: white; border-radius: 24px; padding: 40px 36px; box-shadow: var(--shadow-lg); }
+    .lead-form-box h3 { font-size: 1.3rem; font-weight: 800; color: var(--primary-dark); margin-bottom: 6px; }
+    .lead-form-box p { font-size: 0.87rem; color: var(--text-mid); margin-bottom: 24px; }
+    .form-group { margin-bottom: 16px; }
+    .form-group label { display: block; font-size: 0.82rem; font-weight: 600; color: var(--text-dark); margin-bottom: 6px; }
+    .form-group input, .form-group select {
+      width: 100%; padding: 11px 14px;
+      border: 1.5px solid var(--border); border-radius: 10px;
+      font-size: 0.9rem; color: var(--text-dark); background: var(--off-white);
+      outline: none; transition: border-color 0.2s;
+      font-family: 'Inter', sans-serif;
+    }
+    .form-group input:focus, .form-group select:focus { border-color: var(--primary-light); background: white; }
+    .form-submit {
+      width: 100%; padding: 14px;
+      background: linear-gradient(135deg, var(--primary), var(--primary-light));
+      color: white; border: none; border-radius: 12px;
+      font-size: 0.95rem; font-weight: 700; cursor: pointer;
+      transition: transform 0.2s, box-shadow 0.2s; margin-top: 6px;
+      font-family: 'Inter', sans-serif;
+    }
+    .form-submit:hover { transform: translateY(-1px); box-shadow: 0 6px 20px rgba(26,74,138,0.3); }
+    .lead-info h3 {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.6rem; font-weight: 700; color: var(--text-dark); margin-bottom: 16px;
+    }
+    .lead-info p { color: var(--text-mid); line-height: 1.7; margin-bottom: 24px; }
+    .lead-paths { display: flex; flex-direction: column; gap: 12px; }
+    .lead-path {
+      display: flex; align-items: center; gap: 12px;
+      background: white; border-radius: 12px; padding: 14px 16px;
+      border: 1px solid var(--border); font-size: 0.87rem; font-weight: 600;
+      color: var(--primary-dark); cursor: pointer;
+      transition: border-color 0.2s, box-shadow 0.2s;
+    }
+    .lead-path:hover { border-color: var(--primary-light); box-shadow: 0 2px 12px rgba(26,74,138,0.1); }
+    .lead-path-icon { font-size: 1.2rem; }
+
+    /* CONTACT */
+    .contact { background: white; padding: 80px 5%; }
+    .contact-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 50px; margin-top: 50px; align-items: start; }
+    .contact-info-list { display: flex; flex-direction: column; gap: 18px; }
+    .contact-item { display: flex; align-items: flex-start; gap: 16px; }
+    .contact-icon {
+      width: 46px; height: 46px; border-radius: 12px; flex-shrink: 0;
+      background: var(--off-white); border: 1px solid var(--border);
+      display: flex; align-items: center; justify-content: center; font-size: 1.2rem;
+    }
+    .contact-item-title { font-weight: 700; font-size: 0.9rem; color: var(--text-dark); margin-bottom: 3px; }
+    .contact-item-value { font-size: 0.87rem; color: var(--text-mid); }
+    .wa-big {
+      background: linear-gradient(135deg, #25d366, #128c7e);
+      border-radius: 20px; padding: 36px; color: white; text-align: center;
+    }
+    .wa-big h3 { font-size: 1.3rem; font-weight: 800; margin-bottom: 10px; }
+    .wa-big p { font-size: 0.9rem; opacity: 0.88; margin-bottom: 24px; line-height: 1.6; }
+    .wa-btn {
+      display: inline-flex; align-items: center; gap: 10px;
+      background: white; color: #128c7e;
+      padding: 14px 30px; border-radius: 50px;
+      font-weight: 800; font-size: 0.95rem;
+      text-decoration: none;
+      transition: transform 0.2s, box-shadow 0.2s;
+    }
+    .wa-btn:hover { transform: translateY(-2px); box-shadow: 0 6px 20px rgba(0,0,0,0.15); }
+    .wa-note { font-size: 0.78rem; opacity: 0.7; margin-top: 14px; }
+
+    /* FOOTER */
+    footer {
+      background: var(--primary-dark); color: rgba(255,255,255,0.7);
+      padding: 36px 5%;
+      display: flex; align-items: center; justify-content: space-between;
+      flex-wrap: wrap; gap: 16px;
+    }
+    footer .footer-brand { font-weight: 800; color: white; font-size: 0.95rem; }
+    footer .footer-brand span { color: var(--gold-light); }
+    footer p { font-size: 0.82rem; }
+
+    /* RESPONSIVE */
+    @media (max-width: 900px) {
+      .about-grid, .services-grid, .why-grid, .tips-grid, .testimonials-grid,
+      .lead-inner, .contact-grid { grid-template-columns: 1fr; }
+      nav .nav-links { display: none; }
+    }
+    @media (max-width: 600px) {
+      section { padding: 56px 5%; }
+      .hero { padding: 90px 5% 50px; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <div class="nav-logo">
+    <div class="nav-logo-icon">&#127891;</div>
+    <div class="nav-logo-text">Anek <span>Learning</span></div>
+  </div>
+  <ul class="nav-links">
+    <li><a href="#about">About</a></li>
+    <li><a href="#services">Services</a></li>
+    <li><a href="#why">Why Us</a></li>
+    <li><a href="#tips">Resources</a></li>
+    <li><a href="#contact">Contact</a></li>
+  </ul>
+  <a href="https://wa.me/91XXXXXXXXXX?text=Hi%20Vidya%2C%20I%20would%20like%20to%20book%20a%20free%20consultation." class="nav-cta" target="_blank">
+    &#128172; Chat on WhatsApp
+  </a>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-content">
+    <div class="hero-badge">&#127775; Career Transformation Coach &bull; Secunderabad, India</div>
+    <h1>Transform Your Career with <span>Confidence &amp; Communication</span></h1>
+    <p class="hero-sub">From IELTS &amp; PTE mastery to BPO excellence and pharma communication — guided by a Pearson-certified trainer, behavioural psychologist, and dental professional.</p>
+    <div class="hero-ctas">
+      <a href="#lead" class="btn-primary">&#128197; Book Free Consultation</a>
+      <a href="https://wa.me/91XXXXXXXXXX?text=Hi%20Vidya%2C%20I%20want%20to%20know%20more%20about%20your%20training%20programs." class="btn-whatsapp" target="_blank">
+        &#128172; Chat on WhatsApp
+      </a>
+    </div>
+    <div class="hero-stats">
+      <div class="stat"><div class="stat-num">500+</div><div class="stat-label">Students Trained</div></div>
+      <div class="stat"><div class="stat-num">8+</div><div class="stat-label">Training Programs</div></div>
+      <div class="stat"><div class="stat-num">3&#10003;</div><div class="stat-label">Certified Expertise</div></div>
+    </div>
+  </div>
+</section>
+
+<!-- CREDENTIALS BAR -->
+<div class="credentials-bar">
+  <div class="credentials-inner">
+    <div class="cred-badge"><span class="dot"></span> Pearson Certified PTE Trainer</div>
+    <div class="cred-badge"><span class="dot"></span> Psychological &amp; Behavioural Trainer</div>
+    <div class="cred-badge"><span class="dot"></span> Dental Professional (BDS)</div>
+    <div class="cred-badge"><span class="dot"></span> IELTS Mentor &amp; Consultant</div>
+    <div class="cred-badge"><span class="dot"></span> Corporate Communication Coach</div>
+  </div>
+</div>
+
+<!-- ABOUT -->
+<section class="about" id="about">
+  <div class="section-label">About</div>
+  <div class="section-title">The Expert Behind Anek Learning</div>
+  <div class="section-subtitle">A rare combination of psychology, healthcare, and communication expertise that delivers real-world transformation.</div>
+  <div class="about-grid">
+    <div class="about-card">
+      <div class="about-card-name">Vidya Malve</div>
+      <div class="about-card-title">Career Transformation Coach &bull; Communication &amp; Confidence Expert</div>
+      <div class="about-card-tags">
+        <span class="about-tag">&#127891; PTE Certified</span>
+        <span class="about-tag">&#129504; Behavioural Trainer</span>
+        <span class="about-tag">&#129658; Dentist BDS</span>
+        <span class="about-tag">&#127760; IELTS Mentor</span>
+        <span class="about-tag">&#128188; Corporate Coach</span>
+      </div>
+      <div style="margin-top: 28px; padding-top: 24px; border-top: 1px solid rgba(255,255,255,0.15);">
+        <p style="font-size: 0.85rem; color: rgba(255,255,255,0.75); line-height: 1.7; font-style: italic;">
+          "Combining psychology, healthcare expertise, and communication training to deliver real-world results that go beyond language — I build careers."
+        </p>
+      </div>
+    </div>
+    <div class="about-text">
+      <p>Vidya Malve is the founder of Anek Learning Solutions — a career and communication training academy based in Secunderabad. With a background spanning dentistry, behavioural psychology, and language education, Vidya brings a truly unique and holistic approach to every learner's journey.</p>
+      <p>As a <strong>Pearson-certified PTE trainer</strong>, she has helped hundreds of students achieve their target scores for immigration, higher education, and global careers. Her psychological training background allows her to understand learning barriers — and break them.</p>
+      <div class="about-pillars">
+        <div class="pillar">
+          <div class="pillar-icon">&#129504;</div>
+          <div>
+            <div class="pillar-title">Psychology-Driven Learning</div>
+            <div class="pillar-desc">Behavioural techniques that identify and overcome individual learning blocks for faster results.</div>
+          </div>
+        </div>
+        <div class="pillar">
+          <div class="pillar-icon">&#127891;</div>
+          <div>
+            <div class="pillar-title">Certified &amp; Structured Training</div>
+            <div class="pillar-desc">Pearson-certified PTE and structured IELTS methodology aligned with international standards.</div>
+          </div>
+        </div>
+        <div class="pillar">
+          <div class="pillar-icon">&#128188;</div>
+          <div>
+            <div class="pillar-title">Industry-Ready Skills</div>
+            <div class="pillar-desc">Real-world communication skills for BPO, pharma, customer handling, and corporate roles.</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SERVICES -->
+<section class="services" id="services">
+  <div class="section-label">Services</div>
+  <div class="section-title">Training Programs</div>
+  <div class="section-subtitle">Structured programs across three core domains — designed for students, job seekers, and working professionals.</div>
+  <div class="services-grid">
+    <div class="service-group">
+      <div class="sg-icon">&#127760;</div>
+      <div class="sg-title">Language &amp; Exam Training</div>
+      <ul class="sg-items">
+        <li>IELTS Academic &amp; General</li>
+        <li>PTE Academic (Pearson Certified)</li>
+        <li>PTE General / Everyday English</li>
+        <li>Score Strategy &amp; Mock Tests</li>
+        <li>One-on-One Exam Coaching</li>
+      </ul>
+      <a href="#lead" style="display:inline-block; margin-top:20px; font-size:0.83rem; font-weight:700; color:var(--primary-light); text-decoration:none;">Enroll Now &#8594;</a>
+    </div>
+    <div class="service-group">
+      <div class="sg-icon">&#128483;</div>
+      <div class="sg-title">Career &amp; Communication Training</div>
+      <ul class="sg-items">
+        <li>BPO / Call Center Skills Training</li>
+        <li>Customer Handling &amp; Soft Skills</li>
+        <li>Spoken English &amp; Confidence Building</li>
+        <li>Interview Preparation</li>
+        <li>Business Communication</li>
+      </ul>
+      <a href="#lead" style="display:inline-block; margin-top:20px; font-size:0.83rem; font-weight:700; color:var(--gold); text-decoration:none;">Enroll Now &#8594;</a>
+    </div>
+    <div class="service-group">
+      <div class="sg-icon">&#127979;</div>
+      <div class="sg-title">Professional &amp; Specialized Training</div>
+      <ul class="sg-items">
+        <li>Pharma &amp; Medical Communication</li>
+        <li>Content Writing &amp; Creation</li>
+        <li>Competitive Exam Preparation</li>
+        <li>Psychological &amp; Behavioural Training</li>
+        <li>Corporate Workshops</li>
+      </ul>
+      <a href="#lead" style="display:inline-block; margin-top:20px; font-size:0.83rem; font-weight:700; color:#6c63ff; text-decoration:none;">Enroll Now &#8594;</a>
+    </div>
+  </div>
+</section>
+
+<!-- WHY CHOOSE -->
+<section class="why" id="why">
+  <div class="section-label">Why Choose Us</div>
+  <div class="section-title">From Learning to Earning</div>
+  <div class="section-subtitle">Real skills. Real confidence. Real results. Here's what makes Anek Learning Solutions different.</div>
+  <div class="why-grid">
+    <div class="why-card">
+      <div class="why-icon">&#127941;</div>
+      <div class="why-title">Certified Expertise</div>
+      <div class="why-desc">Pearson-certified PTE trainer with professional credentials in psychology and healthcare — not just another coaching centre.</div>
+    </div>
+    <div class="why-card">
+      <div class="why-icon">&#129504;</div>
+      <div class="why-title">Psychology-Based Approach</div>
+      <div class="why-desc">We understand why learners struggle and use behavioural techniques to unlock each student's true potential.</div>
+    </div>
+    <div class="why-card">
+      <div class="why-icon">&#128200;</div>
+      <div class="why-title">Proven Score Improvements</div>
+      <div class="why-desc">Structured mock tests, gap analysis, and personalised feedback to maximise IELTS/PTE scores fast.</div>
+    </div>
+    <div class="why-card">
+      <div class="why-icon">&#128188;</div>
+      <div class="why-title">Industry-Aligned Training</div>
+      <div class="why-desc">BPO, pharma, and customer communication modules designed around actual employer expectations.</div>
+    </div>
+    <div class="why-card">
+      <div class="why-icon">&#128172;</div>
+      <div class="why-title">Personalised Mentoring</div>
+      <div class="why-desc">Small batches and 1:1 sessions ensure every learner gets direct guidance, not just generic content.</div>
+    </div>
+    <div class="why-card">
+      <div class="why-icon">&#127757;</div>
+      <div class="why-title">Flexible &amp; Accessible</div>
+      <div class="why-desc">Online and offline options available. Learn at your pace with lifetime access to resources and notes.</div>
+    </div>
+  </div>
+</section>
+
+<!-- CONTENT HUB -->
+<section class="content-hub" id="tips">
+  <div class="section-label">Resource Hub</div>
+  <div class="section-title">Tips, Tricks &amp; Insights</div>
+  <div class="section-subtitle">Free learning resources from Vidya — designed to give you a head start before you even enroll.</div>
+  <div class="tips-grid">
+    <div class="tip-card">
+      <div class="tip-tag">&#127760; IELTS Tips</div>
+      <div class="tip-title">5 Common IELTS Writing Mistakes and How to Avoid Them</div>
+      <div class="tip-preview">Most band 6 students lose marks on the same structural errors. Here's what to fix before your exam day.</div>
+      <a href="#contact" class="tip-cta">Read More &#8594;</a>
+    </div>
+    <div class="tip-card">
+      <div class="tip-tag">&#127891; PTE Strategies</div>
+      <div class="tip-title">PTE Speak: How to Score High in Read Aloud &amp; Describe Image</div>
+      <div class="tip-preview">Pearson's scoring algorithm rewards fluency and pronunciation pattern. Master the formula and beat the test.</div>
+      <a href="#contact" class="tip-cta">Read More &#8594;</a>
+    </div>
+    <div class="tip-card">
+      <div class="tip-tag">&#128483; Career Skills</div>
+      <div class="tip-title">Interview Body Language: What Hiring Managers Notice in 30 Seconds</div>
+      <div class="tip-preview">Before you speak a word, your posture and confidence have already told a story. Here's how to control it.</div>
+      <a href="#contact" class="tip-cta">Read More &#8594;</a>
+    </div>
+    <div class="tip-card">
+      <div class="tip-tag">&#128222; BPO Training</div>
+      <div class="tip-title">Customer Handling: De-escalating Difficult Calls with Confidence</div>
+      <div class="tip-preview">Three psychological techniques that top BPO agents use to calm angry customers and close calls professionally.</div>
+      <a href="#contact" class="tip-cta">Read More &#8594;</a>
+    </div>
+    <div class="tip-card">
+      <div class="tip-tag">&#128172; Communication</div>
+      <div class="tip-title">3 Spoken English Habits That Will Transform How You're Perceived</div>
+      <div class="tip-preview">Small shifts in pace, tone, and vocabulary can make you sound 10x more confident and credible instantly.</div>
+      <a href="#contact" class="tip-cta">Read More &#8594;</a>
+    </div>
+    <div class="tip-card">
+      <div class="tip-tag">&#129504; Psychology</div>
+      <div class="tip-title">Why You Freeze When Speaking English — and the Fix Is Simpler Than You Think</div>
+      <div class="tip-preview">Language anxiety is a well-documented psychological response. Here's the behavioural reframe that works.</div>
+      <a href="#contact" class="tip-cta">Read More &#8594;</a>
+    </div>
+  </div>
+</section>
+
+<!-- TESTIMONIALS -->
+<section class="testimonials" id="testimonials">
+  <div class="section-label">Success Stories</div>
+  <div class="section-title">What Students Say</div>
+  <div class="section-subtitle">Real transformations from real learners. Every journey is personal — and every result is earned.</div>
+  <div class="testimonials-grid">
+    <div class="testimonial-card">
+      <div class="quote-mark">"</div>
+      <div class="stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
+      <div class="testimonial-text">Vidya ma'am's PTE coaching is incredible. I went from a 55 to 79 in just 6 weeks. Her method of breaking down each section psychologically made all the difference.</div>
+      <div class="testimonial-author">
+        <div class="author-avatar">P</div>
+        <div>
+          <div class="author-name">Priya S.</div>
+          <div class="author-role">PTE Student → Canada PR</div>
+        </div>
+      </div>
+    </div>
+    <div class="testimonial-card">
+      <div class="quote-mark">"</div>
+      <div class="stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
+      <div class="testimonial-text">I joined the BPO communication training before my first job. The way she trained us for real customer scenarios gave me so much confidence on Day 1.</div>
+      <div class="testimonial-author">
+        <div class="author-avatar">R</div>
+        <div>
+          <div class="author-name">Rahul M.</div>
+          <div class="author-role">BPO Training → Job in 3 weeks</div>
+        </div>
+      </div>
+    </div>
+    <div class="testimonial-card">
+      <div class="quote-mark">"</div>
+      <div class="stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
+      <div class="testimonial-text">Her IELTS coaching is structured and personal. She identified exactly where I was losing marks and fixed it. Achieved Band 7.5 in my second attempt.</div>
+      <div class="testimonial-author">
+        <div class="author-avatar">A</div>
+        <div>
+          <div class="author-name">Anjali K.</div>
+          <div class="author-role">IELTS Band 7.5 → UK Student Visa</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CTA STRIP -->
+<div class="cta-strip">
+  <h2>Ready to Start Your Transformation?</h2>
+  <p>Join hundreds of students and professionals who chose Anek Learning Solutions to unlock their next level.</p>
+  <div class="cta-buttons">
+    <a href="#lead" class="btn-primary">&#128197; Book Free Consultation</a>
+    <a href="https://wa.me/91XXXXXXXXXX?text=Hi%20Vidya%2C%20I%20want%20to%20enroll%20in%20a%20training%20program.%20Please%20guide%20me." class="btn-whatsapp" target="_blank">&#128172; Start on WhatsApp</a>
+  </div>
+</div>
+
+<!-- LEAD CAPTURE -->
+<section class="lead-section" id="lead">
+  <div class="lead-inner">
+    <div class="lead-info">
+      <div class="section-label">Get Started</div>
+      <h3 class="section-title" style="font-size:1.7rem;">What are you looking for?</h3>
+      <p>Tell us your goal and Vidya will personally reach out with the best program recommendation for you.</p>
+      <div class="lead-paths">
+        <a href="https://wa.me/91XXXXXXXXXX?text=Hi%20Vidya%2C%20I%20need%20help%20with%20IELTS%20preparation." class="lead-path" target="_blank">
+          <span class="lead-path-icon">&#127760;</span> IELTS / PTE Preparation
+        </a>
+        <a href="https://wa.me/91XXXXXXXXXX?text=Hi%20Vidya%2C%20I%20need%20BPO%20or%20Job%20communication%20training." class="lead-path" target="_blank">
+          <span class="lead-path-icon">&#128483;</span> Job &amp; Career Communication
+        </a>
+        <a href="https://wa.me/91XXXXXXXXXX?text=Hi%20Vidya%2C%20I%20want%20confidence%20and%20spoken%20English%20training." class="lead-path" target="_blank">
+          <span class="lead-path-icon">&#128172;</span> Confidence &amp; Spoken English
+        </a>
+        <a href="https://wa.me/91XXXXXXXXXX?text=Hi%20Vidya%2C%20I%20need%20pharma%20or%20corporate%20training." class="lead-path" target="_blank">
+          <span class="lead-path-icon">&#127979;</span> Pharma / Corporate Training
+        </a>
+      </div>
+    </div>
+    <div class="lead-form-box">
+      <h3>Book Your Free Consultation</h3>
+      <p>Fill in your details and we'll get back within 24 hours.</p>
+      <form onsubmit="return false;">
+        <div class="form-group">
+          <label>Your Full Name</label>
+          <input type="text" placeholder="e.g. Rahul Sharma" />
+        </div>
+        <div class="form-group">
+          <label>WhatsApp Number</label>
+          <input type="tel" placeholder="+91 XXXXX XXXXX" />
+        </div>
+        <div class="form-group">
+          <label>Your Goal</label>
+          <select>
+            <option value="">— Select your goal —</option>
+            <option>IELTS Preparation</option>
+            <option>PTE Academic / General</option>
+            <option>BPO / Call Center Training</option>
+            <option>Spoken English &amp; Confidence</option>
+            <option>Pharma / Medical Communication</option>
+            <option>Content Writing</option>
+            <option>Competitive Exams</option>
+            <option>Corporate Workshop</option>
+          </select>
+        </div>
+        <button class="form-submit" onclick="window.open('https://wa.me/91XXXXXXXXXX?text=Hi%20Vidya%2C%20I%20have%20filled%20the%20consultation%20form%20and%20would%20like%20to%20discuss%20my%20training%20needs.','_blank')">
+          &#128172; Submit &amp; Chat on WhatsApp
+        </button>
+      </form>
+    </div>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section class="contact" id="contact">
+  <div class="section-label">Contact</div>
+  <div class="section-title">Let's Connect</div>
+  <div class="contact-grid">
+    <div class="contact-info-list">
+      <div class="contact-item">
+        <div class="contact-icon">&#128205;</div>
+        <div>
+          <div class="contact-item-title">Location</div>
+          <div class="contact-item-value">Secunderabad, Telangana, India</div>
+        </div>
+      </div>
+      <div class="contact-item">
+        <div class="contact-icon">&#128222;</div>
+        <div>
+          <div class="contact-item-title">Phone / WhatsApp</div>
+          <div class="contact-item-value">+91 XXXXX XXXXX</div>
+        </div>
+      </div>
+      <div class="contact-item">
+        <div class="contact-icon">&#128140;</div>
+        <div>
+          <div class="contact-item-title">Email</div>
+          <div class="contact-item-value">info@aneklearning.com</div>
+        </div>
+      </div>
+      <div class="contact-item">
+        <div class="contact-icon">&#128336;</div>
+        <div>
+          <div class="contact-item-title">Consultation Hours</div>
+          <div class="contact-item-value">Mon – Sat: 9:00 AM – 7:00 PM IST</div>
+        </div>
+      </div>
+    </div>
+    <div class="wa-big">
+      <div style="font-size: 3rem; margin-bottom: 14px;">&#128172;</div>
+      <h3>Fastest Response on WhatsApp</h3>
+      <p>Click below to start a conversation instantly. Tell Vidya what you need and get a personalised reply within hours.</p>
+      <a href="https://wa.me/91XXXXXXXXXX?text=Hi%20Vidya%2C%20I%20found%20Anek%20Learning%20Solutions%20and%20would%20like%20to%20know%20more%20about%20your%20programs." class="wa-btn" target="_blank">
+        &#128172; Chat on WhatsApp Now
+      </a>
+      <div class="wa-note">Replace XXXXXXXXXX with your actual WhatsApp number</div>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div>
+    <div class="footer-brand">Anek <span>Learning Solutions</span></div>
+    <p style="margin-top:4px;">Founded by Vidya Malve | Secunderabad, Telangana</p>
+  </div>
+  <p>&#169; 2026 Anek Learning Solutions. All rights reserved.</p>
+</footer>
+
+</body>
+</html>
